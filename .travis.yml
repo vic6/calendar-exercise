@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "node"
+  - "7"
+  - "6"
+  - "5"
+
+# Cache dependencies in $HOME/.yarn-cache across builds
+cache: yarn
+
+# Run the the validate script
+script: yarn test
+
+# Build dist files
+before_deploy: yarn run build
+
+# Deploy to gh-pages branch on Github
+# deploy:
+#   skip_cleanup: true
+#   provider: script
+#   script:  ./_scripts/travis-deploy.sh
+#   on:
+#     branch: master
