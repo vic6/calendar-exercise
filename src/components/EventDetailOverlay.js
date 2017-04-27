@@ -19,10 +19,10 @@ export default class EventDetailOverlay extends PureComponent {
         // TODO: Fix. If hours was other than 1 the UI would break
         let endHour = startHour + hours;
 
-        let startHourDisplay = getDisplayHour(startHour)
+        let startHourDisplay = getDisplayHour(startHour);
         let endHourDisplay = getDisplayHour(endHour);
 
-        let displayDateTime = `${displayDate} ${startHourDisplay} - ${endHourDisplay}`
+        let displayDateTime = `${displayDate} ${startHourDisplay} - ${endHourDisplay}`;
 
         // TODO: The event label color should match the event color
         // TODO: Add appropriate ARIA tags to overlay/dialog

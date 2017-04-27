@@ -59,4 +59,4 @@ export const getDisplayHour = (hour) => _HOUR_DISPLAY_MAP[hour]
  */
 export const getEventFromEvents = (events, eventId) => (
     events.find(({id}) => id === eventId)
-)
+);
