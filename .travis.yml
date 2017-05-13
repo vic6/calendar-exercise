@@ -15,9 +15,9 @@ script: yarn test
 before_deploy: yarn run build
 
 # Deploy to gh-pages branch on Github
-# deploy:
-#   skip_cleanup: true
-#   provider: script
-#   script:  ./_scripts/travis-deploy.sh
-#   on:
-#     branch: master
+deploy:
+  skip_cleanup: true
+  provider: script
+  script:  ./_scripts/travis-deploy.sh
+  on:
+    branch: master
