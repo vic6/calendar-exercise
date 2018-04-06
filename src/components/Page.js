@@ -6,23 +6,21 @@ import DATA_SET from '../utils/data';
 
 import './Page.css';
 
-const DayNavigator = ({dateDisplay, onPrev, onNext}) => {
-    return (
-        <nav className="page__nav">
-            <button
-                className="page__nav-button page__prev-day"
-                title="Go to previous day"
-                onClick={onPrev}
-            />
-            <h2 className="page__date">{dateDisplay}</h2>
-            <button
-                className="page__nav-button page__next-day"
-                title="Go to next day"
-                onClick={onNext}
-            />
-        </nav>
+const DayNavigator = ({dateDisplay, onPrev, onNext}) => (
+    <nav className="page__nav">
+        <button
+            className="page__nav-button page__prev-day"
+            title="Go to previous day"
+            onClick={onPrev}
+        />
+        <h2 className="page__date">{dateDisplay}</h2>
+        <button
+            className="page__nav-button page__next-day"
+            title="Go to next day"
+            onClick={onNext}
+        />
+    </nav>
     );
-};
 
 export default class Page extends PureComponent {
     state = {
@@ -34,8 +32,8 @@ export default class Page extends PureComponent {
 
         // The currently selected event in the agenda
         // (mainly to trigger event detail overlay)
-        selectedEventId: undefined
-    }
+        selectedEventId: undefined,
+    };
 
     _handleSelectEvent(selectedEventId) {
         this.setState({selectedEventId});
@@ -78,7 +76,10 @@ export default class Page extends PureComponent {
                     onPrev={this._handlePrev.bind(this)}
                     onNext={this._handleNext.bind(this)}
                 />
-                <Calendar events={filteredEvents} onSelectEvent={this._handleSelectEvent.bind(this)} />
+                <Calendar
+                    events={filteredEvents}
+                    onSelectEvent={this._handleSelectEvent.bind(this)}
+                />
                 {eventDetailOverlay}
             </div>
         );

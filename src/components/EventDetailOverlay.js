@@ -7,14 +7,14 @@ import './EventDetailOverlay.css';
 export default class EventDetailOverlay extends PureComponent {
     static propTypes = {
         event: EVENT_PROP_TYPE.isRequired,
-        onClose: PropTypes.func.isRequired
-    }
+        onClose: PropTypes.func.isRequired,
+    };
 
     render() {
         let {event, onClose} = this.props;
         let {title, description, start, color, hours} = event;
         let displayDate = getDisplayDate(start);
-        let startHour = (new Date(start)).getHours();
+        let startHour = new Date(start).getHours();
 
         // TODO: Fix. If hours was other than 1 the UI would break
         let endHour = startHour + hours;
@@ -43,9 +43,7 @@ export default class EventDetailOverlay extends PureComponent {
                             title={`Event label color: ${color}`}
                         />
                     </div>
-                    <h1 className="event-detail-overlay__title">
-                        {title}
-                    </h1>
+                    <h1 className="event-detail-overlay__title">{title}</h1>
                     <p>{description}</p>
                 </div>
             </section>
