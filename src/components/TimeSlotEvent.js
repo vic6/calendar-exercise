@@ -1,5 +1,6 @@
 import React, {PureComponent, PropTypes} from 'react';
 import {EVENT_PROP_TYPE} from './constants';
+import {getDisplayDate} from '../utils/index';
 
 import './TimeSlotEvent.css';
 
@@ -10,6 +11,7 @@ export default class TimeSlotEvent extends PureComponent {
     };
 
     render() {
+        console.log(getDisplayDate);
         let {event: {title, color}, onSelect} = this.props;
 
         // TODO: Need a way to determine that the event is in the past so that it
