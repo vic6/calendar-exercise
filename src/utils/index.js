@@ -58,7 +58,7 @@ export const getDisplayDate = (timestamp) => {
     let date = new Date(timestamp);
 
     date = date.toLocaleString('en-US', options);
-    // TODO: Format the date like: "Tuesday, April 11, 2017" // DONE
+    // TODO/DONE: Format the date like: "Tuesday, April 11, 2017"
     return date.toString();
 };
 

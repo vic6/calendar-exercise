@@ -14,7 +14,6 @@ export default class EventDetailOverlay extends PureComponent {
         let {event, onClose} = this.props;
         let {title, description, start, color, hours} = event;
 
-        console.log(event);
         let displayDate = getDisplayDate(start);
         let startHour = new Date(start).getHours();
         // TODO: Fix. If hours was other than 1 the UI would break
