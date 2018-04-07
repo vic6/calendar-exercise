@@ -12,7 +12,7 @@ export default class TimeSlotEvent extends PureComponent {
 
     render() {
         let {event: {title, color, start}, onSelect} = this.props;
-        const eventPastDue = start > Date.now();
+        const eventPastDue = start < Date.now();
         // console.log(new Date(start).toString());
         // console.log(title, start > Date.now());
         // TODO/DONE: Need a way to determine that the event is in the past so that it

@@ -25,6 +25,8 @@ const _HOUR_DISPLAY_MAP = [
     '11PM',
 ];
 
+const dateOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
 /**
  * Given a list of events and a date, filter the events down to those that
  * fall on the same day as the date
@@ -32,10 +34,12 @@ const _HOUR_DISPLAY_MAP = [
  * @param {Date} timestamp - The timestamp representing the day to match
  * @returns {array}
  */
-export const filterEventsByDay = (events, timestamp) =>
-    // TODO: Implement day filtering!
+export const filterEventsByDay = (events, timestamp) => {
+    // TODO/DONE: Implement day filtering!
+    const calDay = new Date(timestamp).toLocaleDateString(dateOptions);
 
-     events;
+    return events.filter((event) => new Date(event.start).toLocaleDateString(dateOptions) === calDay);
+};
 
 /**
  * Given a list of events and an hour number, filter the events down to those that
@@ -54,10 +58,9 @@ export const filterEventsByHour = (events, hour) =>
  * @returns {string} The formatted date
  */
 export const getDisplayDate = (timestamp) => {
-    const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     let date = new Date(timestamp);
 
-    date = date.toLocaleString('en-US', options);
+    date = date.toLocaleString('en-US', dateOptions);
     // TODO/DONE: Format the date like: "Tuesday, April 11, 2017"
     return date.toString();
 };
