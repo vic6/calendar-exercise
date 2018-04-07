@@ -1,3 +1,6 @@
 {
-    "extends": "eventbrite-react"
+    "extends": "eventbrite-react",
+    "env": {
+      "browser": "true"
+    }
 }

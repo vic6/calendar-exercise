@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import Calendar from './Calendar';
 import EventDetailOverlay from './EventDetailOverlay';
 import {filterEventsByDay, getEventFromEvents, getDisplayDate} from '../utils';
+import {MILLISECONDS_DAY} from '../utils/constants';
 import DATA_SET from '../utils/data';
 
 import './Page.css';
@@ -20,7 +21,7 @@ const DayNavigator = ({dateDisplay, onPrev, onNext}) => (
             onClick={onNext}
         />
     </nav>
-    );
+);
 
 export default class Page extends PureComponent {
     state = {
@@ -40,15 +41,18 @@ export default class Page extends PureComponent {
     }
 
     _handleEventDetailOverlayClose() {
+        document.querySelector('body').style.overflow = 'scroll';
         this.setState({selectedEventId: undefined});
     }
 
     _handlePrev() {
-        // TODO: Update this.state.day to go back 1 day so previous button works
+        // TODO/DONE: Update this.state.day to go back 1 day so previous button works
+        this.setState((prevState) => ({day: prevState.day - MILLISECONDS_DAY}));
     }
 
     _handleNext() {
-        // TODO: Update this.state.day to go forward 1 day so next button works
+        // TODO/DONE: Update this.state.day to go forward 1 day so next button works
+        this.setState((prevState) => ({day: prevState.day + MILLISECONDS_DAY}));
     }
 
     render() {
@@ -58,6 +62,7 @@ export default class Page extends PureComponent {
         let eventDetailOverlay;
 
         if (selectedEvent) {
+            document.querySelector('body').style.overflow = 'hidden';
             eventDetailOverlay = (
                 <EventDetailOverlay
                     event={selectedEvent}

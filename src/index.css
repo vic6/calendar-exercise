@@ -1,7 +1,7 @@
 html, body, h1, h2, h3 {
   margin: 0;
   padding: 0;
-  
+
 }
 
 body {
@@ -10,5 +10,4 @@ body {
   color: #212121;
   font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
   letter-spacing: 0.02em;
-
 }
