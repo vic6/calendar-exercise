@@ -1,17 +1,14 @@
-html,
-body,
-h1,
-h2,
-h3 {
-    margin: 0;
-    padding: 0;
+html, body, h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+  
 }
 
 body {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #212121;
+  font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
+  letter-spacing: 0.02em;
 
-    color: #212121;
-    font-family: "Helvetica Neue", "Calibri Light", Roboto, sans-serif;
-    letter-spacing: 0.02em;
 }

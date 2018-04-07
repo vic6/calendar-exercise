@@ -1,5 +1,5 @@
 /*
- * TODO: Overlay container should have rounded corners
+ * TODO/DONE: Overlay container should have rounded corners
  */
 
 .event-detail-overlay {
@@ -69,10 +69,18 @@
     width: 1rem;
     vertical-align: sub;
     margin-left: 0.5rem;
-
-    /*
-     * TODO: Figure out how label color can match the event color instead of
-     * always being black
-     */
     background-color: #000;
+}
+
+.event-detail-overlay__color.sky {
+    background-color: #d1e8f0;
+}
+.event-detail-overlay__color.canary {
+    background-color: #fcf69a;
+}
+.event-detail-overlay__color.rose {
+    background-color: #fcbbd2;
+}
+.event-detail-overlay__color.shamrock {
+    background-color: #009e60;
 }
