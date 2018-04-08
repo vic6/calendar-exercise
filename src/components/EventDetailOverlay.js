@@ -12,13 +12,32 @@ export default class EventDetailOverlay extends PureComponent {
 
     componentDidMount() {
         document.addEventListener('keydown', this.closeOverlay);
+        document.addEventListener('click', this.handleClickOutside);
     }
+
+    componentWillUnMount() {
+        document.removeEventListener('keydown', this.closeOverlay);
+        document.removeEventListener('click', this.handleClickOutside);
+    }
+
+    setWrapperRef = (node) => {
+        this.wrapperRef = node;
+    };
+
+    handleClickOutside = (event) => {
+        if (
+            this.wrapperRef &&
+            !this.wrapperRef.contains(event.target) &&
+            !event.target.className.includes('time-slot-event')
+        ) {
+            this.props.onClose();
+        }
+    };
 
     closeOverlay = (event) => {
         if (event.key === 'Escape') {
-            return this.props.onClose();
+            this.props.onClose();
         }
-        return null;
     };
 
     render() {
@@ -40,7 +59,7 @@ export default class EventDetailOverlay extends PureComponent {
         // TODO: Support clicking outside of the overlay to close it
         // TODO: Support clicking ESC to close it
         return (
-            <section className="event-detail-overlay">
+            <section ref={this.setWrapperRef} className="event-detail-overlay">
                 <div className="event-detail-overlay__container">
                     <button
                         className="event-detail-overlay__close"
