@@ -1,32 +1,3 @@
-const _HOUR_DISPLAY_MAP = [
-    '12AM',
-    '1AM',
-    '2AM',
-    '3AM',
-    '4AM',
-    '5AM',
-    '6AM',
-    '7AM',
-    '8AM',
-    '9AM',
-    '10AM',
-    '11AM',
-    '12PM',
-    '1PM',
-    '2PM',
-    '3PM',
-    '4PM',
-    '5PM',
-    '6PM',
-    '7PM',
-    '8PM',
-    '9PM',
-    '10PM',
-    '11PM',
-];
-
-const dateOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-
 /**
  * Given a list of events and a date, filter the events down to those that
  * fall on the same day as the date
@@ -34,6 +5,8 @@ const dateOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'nume
  * @param {Date} timestamp - The timestamp representing the day to match
  * @returns {array}
  */
+const dateOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+
 export const filterEventsByDay = (events, timestamp) => {
     // TODO/DONE: Implement day filtering!
     const calDay = new Date(timestamp).toLocaleDateString(dateOptions);
@@ -70,8 +43,15 @@ export const getDisplayDate = (timestamp) => {
  * @param {number} hour - The hour
  * @returns {string}
  */
-// TODO: Implement using a more programmatic approach instead of map
-export const getDisplayHour = (hour) => _HOUR_DISPLAY_MAP[hour];
+// TODO/DONE: Implement using a more programmatic approach instead of map
+export const getDisplayHour = (hour) => {
+    const period = hour < 12 ? 'AM' : 'PM';
+
+    if (hour === 0 || hour === 12) {
+        return `12${period}`;
+    }
+    return `${hour % 12}${period}`;
+};
 
 /**
  * Given a list of events, returns the event object whose id matches the specified eventId
