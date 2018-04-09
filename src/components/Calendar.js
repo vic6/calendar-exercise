@@ -10,33 +10,27 @@ export default class Calendar extends PureComponent {
     static propTypes = {
         events: EVENTS_PROP_TYPE.isRequired,
         onSelectEvent: PropTypes.func.isRequired,
-    }
+    };
 
     _renderTimeSlots() {
         let {events, onSelectEvent} = this.props;
 
-        return new Array(HOURS_DAY)
-            .fill(0)
-            .map((item, index) => {
-                let hour = index;
-                let filteredEvents = filterEventsByHour(events, hour);
+        return new Array(HOURS_DAY).fill(0).map((item, index) => {
+            let hour = index;
+            let filteredEvents = filterEventsByHour(events, hour);
 
-                return (
-                    <TimeSlot
-                        key={hour}
-                        hour={hour}
-                        events={filteredEvents}
-                        onSelectEvent={onSelectEvent}
-                    />
-                );
-            });
+            return (
+                <TimeSlot
+                    key={hour}
+                    hour={hour}
+                    events={filteredEvents}
+                    onSelectEvent={onSelectEvent}
+                />
+            );
+        });
     }
 
     render() {
-        return (
-            <main className="calendar">
-                {this._renderTimeSlots()}
-            </main>
-        );
+        return <main className="calendar">{this._renderTimeSlots()}</main>;
     }
 }

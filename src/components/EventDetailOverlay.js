@@ -7,15 +7,44 @@ import './EventDetailOverlay.css';
 export default class EventDetailOverlay extends PureComponent {
     static propTypes = {
         event: EVENT_PROP_TYPE.isRequired,
-        onClose: PropTypes.func.isRequired
+        onClose: PropTypes.func.isRequired,
+    };
+
+    componentDidMount() {
+        document.addEventListener('keydown', this.closeOverlay);
+        document.addEventListener('click', this.handleClickOutside);
     }
+
+    componentWillUnMount() {
+        document.removeEventListener('keydown', this.closeOverlay);
+        document.removeEventListener('click', this.handleClickOutside);
+    }
+
+    setWrapperRef = (node) => {
+        this.wrapperRef = node;
+    };
+
+    handleClickOutside = (event) => {
+        if (
+            this.wrapperRef &&
+            !this.wrapperRef.contains(event.target) &&
+            !event.target.className.includes('time-slot-event')
+        ) {
+            this.props.onClose();
+        }
+    };
+
+    closeOverlay = (event) => {
+        if (event.key === 'Escape') {
+            this.props.onClose();
+        }
+    };
 
     render() {
         let {event, onClose} = this.props;
         let {title, description, start, color, hours} = event;
         let displayDate = getDisplayDate(start);
-        let startHour = (new Date(start)).getHours();
-
+        let startHour = new Date(start).getHours();
         // TODO: Fix. If hours was other than 1 the UI would break
         let endHour = startHour + hours;
 
@@ -24,14 +53,19 @@ export default class EventDetailOverlay extends PureComponent {
 
         let displayDateTime = `${displayDate} ${startHourDisplay} - ${endHourDisplay}`;
 
-        // TODO: The event label color should match the event color
+        // TODO/DONE: The event label color should match the event color
         // TODO: Add appropriate ARIA tags to overlay/dialog
-        // TODO: Support clicking outside of the overlay to close it
-        // TODO: Support clicking ESC to close it
+        // TODO/DONE: Support clicking outside of the overlay to close it
+        // TODO/DONE: Support clicking ESC to close it
         return (
-            <section className="event-detail-overlay">
+            <section
+                ref={this.setWrapperRef}
+                className="event-detail-overlay"
+                aria-label="Event Details"
+            >
                 <div className="event-detail-overlay__container">
                     <button
+                        aria-label="Close"
                         className="event-detail-overlay__close"
                         title="Close detail view"
                         onClick={onClose}
@@ -39,13 +73,11 @@ export default class EventDetailOverlay extends PureComponent {
                     <div>
                         {displayDateTime}
                         <span
-                            className="event-detail-overlay__color"
+                            className={`event-detail-overlay__color ${color}`}
                             title={`Event label color: ${color}`}
                         />
                     </div>
-                    <h1 className="event-detail-overlay__title">
-                        {title}
-                    </h1>
+                    <h1 className="event-detail-overlay__title">{title}</h1>
                     <p>{description}</p>
                 </div>
             </section>

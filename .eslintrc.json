@@ -1,0 +1,10 @@
+{
+    "extends": "eventbrite-react",
+    "rules": {
+      "no-invalid-this": 0
+    },
+    "env": {
+      "browser": true,
+      "jest": true
+    }
+}
